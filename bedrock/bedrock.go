@@ -50,7 +50,7 @@ func (e *eventstreamDecoder) Close() error {
 }
 
 func (e *eventstreamDecoder) Err() error {
-	return nil
+	return e.err
 }
 
 func (e *eventstreamDecoder) Next() bool {
