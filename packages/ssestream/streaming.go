@@ -135,6 +135,10 @@ func (s *Stream[T]) Next() bool {
 	}
 
 	for s.decoder.Next() {
+		if s.decoder.Err() != nil {
+			s.err = s.decoder.Err()
+			return false
+		}
 		switch s.decoder.Event().Type {
 		case "completion":
 			s.err = json.Unmarshal(s.decoder.Event().Data, &s.cur)
